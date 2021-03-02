@@ -14,15 +14,19 @@ export default function Navbar({ onSelectProject, selectedProject }: Props) {
   const [newProjectAdded, setNewProjectAdded] = useState(false)
   const [isAddProjectModalOpen, setIsAddProjectModalOpen] = useState<boolean>(false)
   useEffect(() => {
-    new Db().projects.toArray().then(projects => {
+    (async function() {
+      const projects: Array<Project> = await new Db().projects.toArray(); 
       setProjects(projects);
-    })
 
+      if(projects.length === 0){
+        window.localStorage.removeItem('activeProject');
+      }
+    }())
     return () => setNewProjectAdded(false);
   }, [newProjectAdded]);
   return (
     <>
-    <div className="bg-gray-800 mb-5 sticky top-0 flex z-50">
+    <div className="bg-gray-800 mb-5 sticky top-0 flex z-50  overflow-x-auto">
       {
         projects.map((obj) => (
           <div

@@ -18,7 +18,7 @@ export default function TodoCard({ color, desc, tags }: TodoCardProps) {
             tags !== undefined ? (
                <div className="flex items-center flex-wrap mt-5">
                   {tags.map(tag => (
-                     <span className="bg-white opacity-30 text-black inline-block px-3 rounded-full mx-1">
+                     <span className="bg-white opacity-30 text-black inline-block px-3 rounded-full mr-1 mb-1">
                         {tag}
                      </span>
                   ))}

@@ -24,8 +24,8 @@ export default function AddTodoModal({ projectId, onClose, onAddedNewTodo }: Pro
         tags: tagsh,
         project_id: projectId,
       });
-      onAddedNewTodo();
       onClose();
+      onAddedNewTodo();
       e.preventDefault();
    }
 
