@@ -11,7 +11,7 @@ function App() {
   const [todos, setTodos] = useState<Array<Todo>>([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
   const [selectedProject, setSelectedProject] = useState<number | undefined>(recentActiveProject);
-    const [addedNewTodo, setAddedNewTodo] = useState<boolean>(false);
+  const [addedNewTodo, setAddedNewTodo] = useState<boolean>(false);
     
   useEffect(() => {
     (async function() {
@@ -20,7 +20,6 @@ function App() {
       .equals((selectedProject as unknown) as number)
       .toArray();
 
-      console.log(typeof selectedProject, selectedProject, typeof recentActiveProject)
       setTodos(data);
     }());
     
@@ -37,7 +36,7 @@ function App() {
       />
       {!selectedProject? (
         <div className="max-w-md border border-gray-400 mx-auto rounded-lg p-5">
-          <p className="text-gray-400 font-semibold text-center py-10 px-2">
+          <p className="text-gray-400 text-center py-10 px-2">
               Select a project first
               <br />
               or create a new one by clicking the blue button above
