@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.modal-container {
+   background: #232a35 !important;
+   color: #ccc !important;
+}
