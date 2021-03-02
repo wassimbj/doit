@@ -34,7 +34,7 @@ export default function Navbar({ onSelectProject, selectedProject }: Props) {
               window.localStorage.setItem('activeProject', obj.id as unknown as string)
               onSelectProject(obj.id)
             }}
-            className={`cursor-pointer flex items-center text-gray-300 px-4 py-3 border-r border-gray-600 inline-block ${selectedProject == obj.id ? 'bg-gray-900 text-white' : 'hover:bg-gray-600 bg-gray-700'}`}
+            className={`cursor-pointer whitespace-nowrap flex items-center text-gray-300 px-4 py-3 border-r border-gray-600 ${selectedProject == obj.id ? 'bg-gray-900 text-white' : 'hover:bg-gray-600 bg-gray-700'}`}
           >
             {obj.name}
             <MoreHorizontal className="text-gray-500 p-1 rounded-md hover:bg-gray-800 cursor-pointer ml-3" />

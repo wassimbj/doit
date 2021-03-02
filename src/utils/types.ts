@@ -17,9 +17,11 @@ export interface PaletteInfo {
 export type Palette = Record<Colors, PaletteInfo>
 
 export interface TodoCardProps {
+   id: number | undefined,
    color: Colors,
    desc: string,
-   tags?: Array<string>
+   tags?: Array<string>,
+   onDeleteTodo: () => void
 }
 
 export interface Todo {

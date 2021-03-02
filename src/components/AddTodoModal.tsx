@@ -17,6 +17,9 @@ export default function AddTodoModal({ projectId, onClose, onAddedNewTodo }: Pro
    const [color, setColor] = useState<Colors>('blue')
 
    const handleAddTodo: (e: React.FormEvent<HTMLFormElement>) => void = (e) => {
+     if(!desc){
+       return;
+     }
       const tagsh = tags.split(',');
       new Db().todos.add({
         color,
@@ -33,7 +36,7 @@ export default function AddTodoModal({ projectId, onClose, onAddedNewTodo }: Pro
     <Modal onClose={onClose}>
       <Title> Add a Todo </Title>
       <ModalBody>
-        <form id="reportForm" onSubmit={handleAddTodo}>
+        <form id="addTodo" onSubmit={handleAddTodo}>
           <textarea
             rows={7}
             onChange={(e) => setDesc(e.target.value)}
@@ -66,13 +69,23 @@ export default function AddTodoModal({ projectId, onClose, onAddedNewTodo }: Pro
         >
           Cancel
         </span>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white rounded-full px-3 py-1 hover:bg-blue-600 transition"
-          form="reportForm"
-        >
-          Create
-        </button>
+        {
+          !desc ? (
+            <span
+              className="inline-block bg-blue-500 text-white rounded-full px-3 py-1 opacity-50 transition"
+            >
+              Create
+            </span>
+          ) : (
+            <button
+              type="submit"
+              className="bg-blue-500 text-white rounded-full px-3 py-1 hover:bg-blue-600 transition"
+              form="addTodo"
+            >
+              Create
+            </button>
+          )
+        }
       </ModalFooter>
     </Modal>
   );

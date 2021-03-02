@@ -11,7 +11,7 @@ function App() {
   const [todos, setTodos] = useState<Array<Todo>>([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
   const [selectedProject, setSelectedProject] = useState<number | undefined>(recentActiveProject);
-  const [addedNewTodo, setAddedNewTodo] = useState<boolean>(false);
+  const [somethingUpdated, setSomethingUpdated] = useState<boolean>(false);
     
   useEffect(() => {
     (async function() {
@@ -24,9 +24,9 @@ function App() {
     }());
     
     return () => {
-      setAddedNewTodo(false)
+      setSomethingUpdated(false)
     };
-  }, [addedNewTodo, selectedProject]);
+  }, [somethingUpdated, selectedProject]);
 
   return (
     <div className="overflow-y-auto overflow-x-hidden bg-gray-900 fixed w-full h-full">
@@ -54,14 +54,16 @@ function App() {
           {isAddModalOpen && (
             <AddTodoModal
               onClose={() => setIsAddModalOpen(false)}
-              onAddedNewTodo={() => setAddedNewTodo(true)}
+              onAddedNewTodo={() => setSomethingUpdated(true)}
               projectId={selectedProject}
             />
           )}
           <div className="p-5">
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {todos.map((todo) => (
-                <TodoCard
+                <TodoCard 
+                  onDeleteTodo={() => setSomethingUpdated(true)}
+                  id={todo.id}
                   color={todo.color}
                   desc={todo.desc}
                   tags={todo.tags}

@@ -12,10 +12,13 @@ export default function AddProjectModal({ onClose, onAddNewProject }: Props) {
    const [name, setName] = useState('')
 
    const handleAddProject: (e: React.FormEvent<HTMLFormElement>) => void = (e) => {
-      new Db().projects.add({ name });
-      onClose();
-      onAddNewProject()
-      e.preventDefault()
+     if(!name){
+      return;
+     }
+    new Db().projects.add({ name });
+    onClose();
+    onAddNewProject()
+    e.preventDefault()
    }
 
   return (
@@ -38,13 +41,23 @@ export default function AddProjectModal({ onClose, onAddNewProject }: Props) {
         >
           Cancel
         </span>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white rounded-full px-3 py-1 hover:bg-blue-600 transition"
-          form="addProject"
-        >
-          Create
-        </button>
+        {
+          !name ? (
+            <span
+              className="inline-block bg-blue-500 text-white rounded-full px-3 py-1 opacity-50 transition"
+            >
+              Create
+            </span>
+          ) : (
+            <button
+              type="submit"
+              className="bg-blue-500 text-white rounded-full px-3 py-1 hover:bg-blue-600 transition"
+              form="addProject"
+            >
+              Create
+            </button>
+          )
+        }
       </ModalFooter>
     </Modal>
   );
