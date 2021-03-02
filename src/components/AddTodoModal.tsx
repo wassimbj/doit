@@ -2,20 +2,31 @@ import React, { useState } from "react";
 import { Modal, ModalBody, Title, ModalFooter } from "nice-react-modal";
 import {colorsAvailabe} from '../utils/palette';
 import Db from '../db/init';
+import { Colors } from "../utils/types";
 
 interface Props {
   onClose: () => void;
+  onAddedNewTodo: () => void;
+  projectId: number | undefined
 }
 
-export default function AddTodoModal({ onClose }: Props) {
+export default function AddTodoModal({ projectId, onClose, onAddedNewTodo }: Props) {
 
-   const [desc, setDesc] = useState('')
-   const [tags, setTags] = useState('')
-   const [color, setColor] = useState('')
+   const [desc, setDesc] = useState<string>('')
+   const [tags, setTags] = useState<string>('')
+   const [color, setColor] = useState<Colors>('blue')
 
    const handleAddTodo: (e: React.FormEvent<HTMLFormElement>) => void = (e) => {
-      // console.log(desc, tags, color);
-      e.preventDefault()
+      const tagsh = tags.split(',');
+      new Db().todos.add({
+        color,
+        desc,
+        tags: tagsh,
+        project_id: projectId,
+      });
+      onAddedNewTodo();
+      onClose();
+      e.preventDefault();
    }
 
   return (
@@ -39,7 +50,7 @@ export default function AddTodoModal({ onClose }: Props) {
          <select
             className="mt-5 p-2 border border-gray-600 focus:border-gray-500 rounded-lg bg-gray-700 w-full block focus:outline-none cursor-pointer"
             name="color"
-            onChange={(e) => setColor(e.target.value)}
+            onChange={(e) => setColor(e.target.value as Colors)}
          >
             <option value="" disabled selected className="text-gray-600">select note color</option>
             {colorsAvailabe.map(color => (

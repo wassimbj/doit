@@ -35,7 +35,7 @@ const colorPalette: Palette = {
    },
 }
 
-export const colorsAvailabe: Array<string> = [
+export const colorsAvailabe: Array<Colors> = [
    "yellow"
    ,"green"
    ,"teal"

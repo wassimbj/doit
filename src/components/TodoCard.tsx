@@ -6,21 +6,25 @@ export default function TodoCard({ color, desc, tags }: TodoCardProps) {
   const theme: {bg: string, color: string} = colorPalette[color];
    return (
       <div
-         className="shadow-md px-3 pt-5 pb-2 rounded-lg"
+         className="shadow-md px-3 pt-5 pb-2 rounded-lg break-words"
          style={{
             color: theme.color,
             background: theme.bg
          }}
       >
-         {desc}
+         <p>{desc}</p>
          <br />
-         <div className="flex items-center flex-wrap mt-5">
-            {tags.map(tag => (
-               <span className="bg-white opacity-30 text-black inline-block px-3 rounded-full mx-1">
-                  {tag}
-               </span>
-            ))}
-         </div>
+         {
+            tags !== undefined ? (
+               <div className="flex items-center flex-wrap mt-5">
+                  {tags.map(tag => (
+                     <span className="bg-white opacity-30 text-black inline-block px-3 rounded-full mx-1">
+                        {tag}
+                     </span>
+                  ))}
+               </div>
+            ) : null
+         }
       </div>
    )
 }

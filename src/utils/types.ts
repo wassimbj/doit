@@ -19,15 +19,15 @@ export type Palette = Record<Colors, PaletteInfo>
 export interface TodoCardProps {
    color: Colors,
    desc: string,
-   tags: Array<string>
+   tags?: Array<string>
 }
 
 export interface Todo {
    id?: number,
    desc: string,
    tags?: Array<string>,
-   color: string,
-   project_id: number
+   color: Colors,
+   project_id: number | undefined
 }
 
 export interface Project {
