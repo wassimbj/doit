@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 import { Modal, ModalBody, ModalTitle, ModalFooter } from "nice-react-modal";
 import Db from '../db/init';
+import { Project } from "../utils/types";
 
 interface Props {
-  onClose: () => void;
-  onAddNewProject: () => void;
+  onClose: () => void
+  onRenameProject: () => void
+  project: Project
 }
 
-export default function AddProjectModal({ onClose, onAddNewProject }: Props) {
+export default function RenameProjectModal({ onClose, onRenameProject, project }: Props) {
 
-   const [name, setName] = useState('')
+   const [name, setName] = useState(project.name)
 
    const handleAddProject: (e: React.FormEvent<HTMLFormElement>) => void = (e) => {
      if(!name){
       return;
      }
-    new Db().projects.add({ name });
+    new Db().projects.update(project.id as number, { name });
     onClose();
-    onAddNewProject()
+    onRenameProject()
     e.preventDefault()
    }
 
@@ -30,6 +32,7 @@ export default function AddProjectModal({ onClose, onAddNewProject }: Props) {
             className="mt-5 p-2 border border-gray-600 focus:border-gray-500 rounded-lg bg-gray-700 w-full block focus:outline-none"
             onChange={(e) => setName(e.target.value)}
             name="tags"
+            value={name}
             placeholder="project name..."
          />
         </form>
@@ -54,7 +57,7 @@ export default function AddProjectModal({ onClose, onAddNewProject }: Props) {
               className="bg-blue-500 text-white rounded-full px-3 py-1 hover:bg-blue-600 transition"
               form="addProject"
             >
-              Create
+              Save changes
             </button>
           )
         }

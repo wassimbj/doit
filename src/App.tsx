@@ -45,7 +45,7 @@ function App() {
       ) : (
         <p>
           <span
-            className="cursor-pointer max-w-sm mx-auto text-center block text-gray-500 bg-gray-800 hover:border-gray-700 border border-gray-500 rounded-md p-5 mx-5 mb-10"
+            className="cursor-pointer max-w-sm mx-auto text-center block text-gray-500 bg-gray-800 hover:border-gray-700 border border-gray-500 rounded-md p-5 mb-10"
             onClick={() => setIsAddModalOpen(true)}
           >
             <Plus className="mx-auto mb-1" />

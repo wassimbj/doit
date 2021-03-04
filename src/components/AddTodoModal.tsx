@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, ModalBody, Title, ModalFooter } from "nice-react-modal";
+import { Modal, ModalBody, ModalTitle, ModalFooter } from "nice-react-modal";
 import {colorsAvailabe} from '../utils/palette';
 import Db from '../db/init';
 import { Colors } from "../utils/types";
@@ -33,12 +33,12 @@ export default function AddTodoModal({ projectId, onClose, onAddedNewTodo }: Pro
    }
 
   return (
-    <Modal onClose={onClose}>
-      <Title> Add a Todo </Title>
+    <Modal onClose={onClose} darkMode>
+      <ModalTitle> Add a Todo </ModalTitle>
       <ModalBody>
         <form id="addTodo" onSubmit={handleAddTodo}>
           <textarea
-            rows={7}
+            rows={4}
             onChange={(e) => setDesc(e.target.value)}
             name="desc"
             className="p-2 border border-gray-600 focus:border-gray-500 rounded-lg bg-gray-700 w-full block focus:outline-none"

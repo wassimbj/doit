@@ -12,7 +12,7 @@
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "dexie": "^3.0.3",
-    "nice-react-modal": "^1.0.1",
+    "nice-react-modal": "^2.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-feather": "^2.0.9",
